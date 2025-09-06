@@ -1,0 +1,19 @@
+{
+  "name": "task_tracker_cli",
+  "version": "1.0.0",
+  "description": "Program to manage your task with CLI based program.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/index.mjs"
+  },
+  "author": "Alan",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "morgan": "^1.10.1",
+    "nodemon": "^3.1.10",
+    "sqlite3": "^5.1.7"
+  }
+}
