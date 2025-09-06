@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import taskRouter from '../routes/TaskR.mjs'
+import {taskRouter} from '../routes/TaskR.mjs'
 import morgan from 'morgan';
 
 const app = express();

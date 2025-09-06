@@ -22,13 +22,25 @@ export function deleteTask(req, res){
 
 export function updateTask(req, res){
     const {task_id} = req.params;
+    // console.log(task_id);
     const {new_description, new_status} = req.body;
-
+    // console.log(new_description, new_status);
+    let column = [];
+    let values = [];
     if(!task_id){
         return res.status(400).json({success : false, msg : "Task id undefined"});
     }
-    if(new_description) taskModel.updateTaskDescription(task_id, new_description, res);
-    else if(new_status) taskModel.updateTaskStatus(task_id, new_status, res);
-    
+    if(new_description) {
+        column.push("description = ?");
+        values.push(new_description);
+    }
+    if(new_status != undefined) {
+        column.push("status = ?");
+        values.push(new_status)
+    }
+    values.push(task_id);
+    if(!new_description && new_status == undefined) return res.status(400).json({success : false, msg : "Please provide a new description or status to update"});
+
+    taskModel.updateTask(column, values, res);
 }
 

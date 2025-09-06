@@ -61,7 +61,13 @@ export function updateTaskDescription(id, new_description, res)
 export function updateTaskStatus(id, new_status, res){
     db.run(`UPDATE task SET status = ?, updatedAt = datetime('now', 'localtime') where id = ?`, [Number(new_status), id], (err)=>{
         if(err) return res.status(400).json({success: false, msg : err.message});
-
         res.status(200).json({success: true, msg : "Task Status Updated"});
+    });
+}
+
+export function updateTask(column, values, res){
+    db.run(`UPDATE task SET ${column.join(",")}, updatedAt = datetime('now', 'localtime') where id = ?`, values, (err)=>{
+        if(err) return res.status(400).json({success: false, msg : err.message});
+        res.status(200).json({success: true, msg : "Task Status Updated", data : values});
     });
 }
